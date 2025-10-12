@@ -1,4 +1,5 @@
 import css from "./Home.module.css";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -17,6 +18,13 @@ export default function Home() {
           and productivity.
         </p>
       </div>
+      <Image
+        src="https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"
+        alt="test"
+        width={1200}
+        height={800}
+        priority
+      />
     </main>
   );
 }
