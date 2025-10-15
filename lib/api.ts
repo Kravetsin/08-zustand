@@ -30,7 +30,7 @@ type NotesResponse = {
   totalPages: number;
 };
 
-//! 🔹 API-функции
+//! 🔹 API-functions
 export const fetchNotes = async ({
   page,
   search,
@@ -52,11 +52,13 @@ export const fetchNotes = async ({
   return data;
 };
 
-export const createNote = async (noteData: {
+export type NewNoteData = {
   title: string;
   content: string;
   tag: string;
-}): Promise<Note> => {
+};
+
+export const createNote = async (noteData: NewNoteData): Promise<Note> => {
   const { data } = await api.post<Note>("/notes", noteData, {
     headers: { "Content-Type": "application/json" },
   });

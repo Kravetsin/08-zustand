@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main>
+    <main className={css.main}>
       <div className={css.container}>
         <h1 className={css.title}>Welcome to NoteHub</h1>
         <p className={css.description}>
@@ -17,14 +17,15 @@ export default function Home() {
           NoteHub offers a streamlined experience for anyone who values clarity
           and productivity.
         </p>
+        <Image
+          className={css.image}
+          src="https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"
+          alt="test"
+          width={600}
+          height={400}
+          priority
+        />
       </div>
-      <Image
-        src="https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"
-        alt="test"
-        width={1200}
-        height={800}
-        priority
-      />
     </main>
   );
 }

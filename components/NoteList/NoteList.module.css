@@ -8,7 +8,9 @@
 }
 
 .listItem {
-  background-color: #ffffff;
+  background:
+    linear-gradient(217deg, #fff, transparent 60%),
+    linear-gradient(127deg, #008cff56, transparent 40%);
   border: 1px solid #dee2e6;
   border-radius: 8px;
   padding: 16px;
@@ -99,6 +101,7 @@
   text-decoration: none;
   display: inline-block;
   color: #0b5ed7;
+  padding: 4px 0;
 }
 
 .routerLink::before,

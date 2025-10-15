@@ -1,5 +1,9 @@
-function Loading() {
-  return <p>Loading, please wait...</p>;
-}
+import css from "./loading.module.css";
 
-export default Loading;
+export default function Loading() {
+  return (
+    <div className={css.backdrop}>
+      <div className={css.spinner}></div>
+    </div>
+  );
+}

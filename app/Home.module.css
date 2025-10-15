@@ -37,3 +37,8 @@
   line-height: 28px;
   margin-bottom: 16px;
 }
+
+.image {
+  display: block;
+  margin: 0 auto;
+}
