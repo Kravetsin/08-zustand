@@ -1,4 +1,4 @@
-export const HOME_PAGE = "https://08-zustand-kdhp.vercel.app";
+export const HOME_PAGE = "https://08-zustand-six-lemon-68.vercel.app/";
 
 export const SITE_NAME = "NoteHub";
 
