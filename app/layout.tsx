@@ -3,27 +3,25 @@ import "./globals.css";
 import "modern-normalize";
 import { Roboto } from "next/font/google";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
+import {
+  HOME_PAGE,
+  OG_IMAGE,
+  OG_DESCRIPTION,
+  SITE_NAME,
+} from "@/config/metaData";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 
 export const metadata: Metadata = {
-  title: "NoteHUB",
-  description:
-    "NoteHUB is your smart workspace for notes, inspiration, and ideas. Create, organize, and share your thoughts in one clean and intuitive place.",
+  title: SITE_NAME,
+  description: OG_DESCRIPTION,
   openGraph: {
     title: "NoteHUB — Capture Ideas, Organize Thoughts",
     description:
       "Create, edit, and organize notes with NoteHUB — your personal hub for creativity and productivity.",
-    url: "?????",
-    siteName: "NoteHub",
-    images: [
-      {
-        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
-        width: 1200,
-        height: 630,
-        alt: "NoteHub",
-      },
-    ],
+    url: HOME_PAGE,
+    siteName: SITE_NAME,
+    images: [OG_IMAGE],
     type: "website",
   },
 };

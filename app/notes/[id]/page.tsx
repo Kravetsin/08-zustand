@@ -5,15 +5,30 @@ import {
 } from "@tanstack/react-query";
 import { getSingleNote } from "@/lib/api";
 import NoteDetailsClient from "./NoteDetails.client";
+import { HOME_PAGE, OG_IMAGE, SITE_NAME } from "@/config/metaData";
 import { Metadata } from "next";
 
 interface NoteDetailsProps {
   params: { id: string };
 }
 
-export async function generateMetadata({}: NoteDetailsProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: NoteDetailsProps): Promise<Metadata> {
+  const { id } = await params;
+  const note = await getSingleNote(id);
+
   return {
-    title: "Note details",
+    title: `${SITE_NAME} | ${note.title}`,
+    description: note.content.slice(0, 30),
+    openGraph: {
+      title: `${SITE_NAME} | ${note.title}`,
+      description: note.content.slice(0, 100),
+      url: `${HOME_PAGE}/notes/${id}`,
+      siteName: SITE_NAME,
+      images: [OG_IMAGE],
+      type: "article",
+    },
   };
 }
 

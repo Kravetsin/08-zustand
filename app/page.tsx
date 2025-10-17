@@ -20,7 +20,7 @@ export default function Home() {
         <Image
           className={css.image}
           src="https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"
-          alt="test"
+          alt="NoteHub"
           width={600}
           height={400}
           priority
