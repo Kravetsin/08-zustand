@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: `${SITE_NAME} | Create new note`,
     description:
       "Create, edit, and organize notes with NoteHUB — your personal hub for creativity and productivity.",
-    url: `${HOME_PAGE}/notes/actions/create`,
+    url: `${HOME_PAGE}/notes/action/create`,
     siteName: SITE_NAME,
     images: [OG_IMAGE],
     type: "website",

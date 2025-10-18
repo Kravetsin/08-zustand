@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useDebounce } from "use-debounce";
+import { useState } from "react";
+import { useDebouncedCallback } from "use-debounce";
 import { Toaster } from "react-hot-toast";
-import { useFetchNotes } from "@/lib/api";
 import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import css from "./NotesPage.module.css";
-
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { fetchNotes } from "@/lib/api";
 import Link from "next/link";
 
 interface NotesProps {
@@ -16,29 +16,34 @@ interface NotesProps {
 }
 
 export default function Notes({ tag }: NotesProps) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rawSearch, setRawSearch] = useState("");
-  const [debouncedSearch] = useDebounce(rawSearch, 300);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
 
-  const { data, isLoading, isError } = useFetchNotes(
-    currentPage,
-    debouncedSearch,
-    tag
-  );
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["notes", page, search, tag],
+    queryFn: () => fetchNotes({ page, search, tag }),
+    placeholderData: keepPreviousData,
+    refetchOnMount: false,
+  });
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [debouncedSearch]);
+  const handlePageChange = (page: number) => {
+    setPage(page);
+  };
+
+  const handleSearch = useDebouncedCallback((value: string) => {
+    setSearch(value);
+    setPage(1);
+  }, 300);
 
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
-        <SearchBox onChange={(e) => setRawSearch(e.target.value)} />
-        {data?.totalPages && data.totalPages > 1 && (
+        <SearchBox onSearchChange={handleSearch} />
+        {data && data.totalPages > 1 && (
           <Pagination
             pageCount={data.totalPages}
-            currentPage={currentPage}
-            onPageChange={setCurrentPage}
+            currentPage={page}
+            onPageChange={handlePageChange}
           />
         )}
         <Link href={"/notes/action/create"} className={css.button}>
